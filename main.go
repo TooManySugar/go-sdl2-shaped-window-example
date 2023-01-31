@@ -93,17 +93,17 @@ eventLoop:
 		}
 
 		switch e := event.(type) {
-		case sdl.QuitEvent:
+		case *sdl.QuitEvent:
 			fmt.Println("Close")
 			break eventLoop
 
-		case sdl.MouseButtonEvent:
-			if uint32(e.Button) == uint32(sdl.ButtonLeft) && e.State == sdl.PRESSED {
+		case *sdl.MouseButtonEvent:
+			if e.Button == sdl.BUTTON_LEFT && e.State == sdl.PRESSED {
 				fmt.Println("LMB Click")
 				break eventLoop
 			}
 
-			if uint32(e.Button) == uint32(sdl.ButtonRight) && e.State == sdl.PRESSED {
+			if e.Button == sdl.BUTTON_RIGHT && e.State == sdl.PRESSED {
 				fmt.Println("RMB Click")
 				fmt.Println("window.IsShaped():", window.IsShaped())
 				wsm, ierr := window.GetShapeMode()
